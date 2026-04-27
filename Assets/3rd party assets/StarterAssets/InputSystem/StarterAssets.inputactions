@@ -57,7 +57,7 @@
                     "id": "50a008e9-eca3-4e59-b351-080115377ff5",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "initialStateCheck": false
                 }
             ],
@@ -262,8 +262,19 @@
                 },
                 {
                     "name": "",
-                    "id": "e311c829-4804-485b-943a-a9786d8b31a2",
+                    "id": "88bc2db8-30d6-4878-8213-8e1666532a0b",
                     "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5df17839-0c80-4b53-b9e3-e892dfbf76fb",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

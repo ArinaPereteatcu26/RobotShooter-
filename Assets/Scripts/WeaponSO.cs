@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [CreateAssetMenu(fileName = "WeaponSO", menuName = "Scriptable Objects/WeaponSO")]
 public class WeaponSO : ScriptableObject
@@ -9,6 +10,8 @@ public class WeaponSO : ScriptableObject
     public GameObject HitVFXPrefab;
     public bool IsAutomatic = false;
     public bool CanZoom = false;
+    public float ZoomAmount = 10f;
+    public float ZoomRotationSpeed = .3f;
 
 
 

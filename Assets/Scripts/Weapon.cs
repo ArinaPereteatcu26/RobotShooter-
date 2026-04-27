@@ -4,6 +4,7 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] ParticleSystem muzzleFlash;
     [SerializeField] private float range = 100f;
+    [SerializeField] LayerMask interactionLayers;
 
 
     public void Shoot(WeaponSO weaponSO)
@@ -13,10 +14,10 @@ public class Weapon : MonoBehaviour
         RaycastHit hit; 
         muzzleFlash.Play();
 
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, range))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, range, interactionLayers, QueryTriggerInteraction.Ignore))
         {
            
-            EnemyHealth enemyHealth = hit.collider.GetComponentInParent<EnemyHealth>();
+            EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
 
             if (enemyHealth != null)
             {

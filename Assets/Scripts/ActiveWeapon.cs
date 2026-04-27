@@ -1,25 +1,32 @@
 using JetBrains.Annotations;
 using StarterAssets;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class ActiveWeapon : MonoBehaviour
 {
-    
-
+    [SerializeField] CinemachineVirtualCamera playerFollowCamera;
     [SerializeField] WeaponSO weaponSO;
+    [SerializeField] GameObject zoomVignette;
     Animator animator;
 
     private StarterAssetsInputs starterAssetsInputs;
+    FirstPersonController firstPersonController;
     Weapon currentWeapon;
 
     const string SHOOT_STRING = "Shooting";
 
     float timeSinceLastShot = 0f;
+    float defaultFOV;
+    float defaultRotationSpeed;
 
     void Awake()
     {
         starterAssetsInputs = GetComponentInParent<StarterAssetsInputs>();
+        firstPersonController = GetComponentInParent<FirstPersonController>();
         animator = GetComponent<Animator>();
+        defaultFOV = playerFollowCamera.m_Lens.FieldOfView;
+        defaultRotationSpeed = firstPersonController.RotationSpeed;
     }
 
     private void Start()
@@ -34,12 +41,15 @@ public class ActiveWeapon : MonoBehaviour
 
     void Update()
     {
-        timeSinceLastShot += Time.deltaTime;
+        
         HandleShoot();
+        HandleZoom();
     }
 
     void HandleShoot()
-    {
+    {   
+        timeSinceLastShot += Time.deltaTime;
+
         if (starterAssetsInputs == null) return;
         if (!starterAssetsInputs.shoot) return;
         if (Camera.main == null)
@@ -78,11 +88,15 @@ public class ActiveWeapon : MonoBehaviour
 
         if (starterAssetsInputs.zoom)
         {
-            Debug.Log("zoomed in");
+            playerFollowCamera.m_Lens.FieldOfView = weaponSO.ZoomAmount;
+            zoomVignette.SetActive(true);
+            firstPersonController.ChangeRotationSpeed(weaponSO.ZoomRotationSpeed);
         }
         else
         {
-            Debug.Log("not zoomed in");
+            playerFollowCamera.m_Lens.FieldOfView = defaultFOV;
+            zoomVignette.SetActive(false);
+            firstPersonController.ChangeRotationSpeed(defaultRotationSpeed);
         }
 
     }
