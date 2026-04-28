@@ -136,7 +136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2182140ff3fad144eb5a13584af9cb28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  startingHealth: 20
+  robotExplosionVFX: {fileID: 4102027512718062079, guid: 245d7062fe06e354eb8a0beb790d641f, type: 3}
+  startingHealth: 5
 --- !u!95 &7751497357608801892
 Animator:
   serializedVersion: 7
