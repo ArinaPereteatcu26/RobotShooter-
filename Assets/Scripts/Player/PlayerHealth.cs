@@ -1,11 +1,14 @@
 using Unity.Cinemachine;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [Range(1,10)]
     [SerializeField] int startingHealth = 5;
     [SerializeField] CinemachineCamera deathVirtualCamera;
     [SerializeField] Transform weaponCamera;
+    [SerializeField] Image[] shieldBars;
 
     int gameOverVirtualCameraPriority = 20;
     private int currentHealth;
@@ -13,19 +16,33 @@ public class PlayerHealth : MonoBehaviour
     void Awake()
     {
         currentHealth = startingHealth;
-        Debug.Log($"{gameObject.name} starting health = {currentHealth}");
+        AdjustShieldUI();
     }
 
     public void TakeDamage(int damageAmount)
     {
         currentHealth -= damageAmount;
-        Debug.Log($"{gameObject.name} took damage. Current health = {currentHealth}");
+        AdjustShieldUI();
 
         if (currentHealth <= 0)
         {
             weaponCamera.parent = null;
             deathVirtualCamera.Priority = gameOverVirtualCameraPriority;
             Destroy(this.gameObject);
+        }
+    }
+    void AdjustShieldUI()
+    {
+        for (int i = 0; i < shieldBars.Length; i++)
+        {
+            if (i < currentHealth)
+            {
+                shieldBars[i].gameObject.SetActive(true);
+            }
+            else
+            {
+                shieldBars[i].gameObject.SetActive(false);
+            }
         }
     }
 }
