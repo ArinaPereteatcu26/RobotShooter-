@@ -25,7 +25,7 @@ public class Weapon : MonoBehaviour
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, range, interactionLayers, QueryTriggerInteraction.Ignore))
         {
            
-            EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
+            EnemyHealth enemyHealth = hit.collider.GetComponentInParent<EnemyHealth>();
 
             if (enemyHealth != null)
             {
