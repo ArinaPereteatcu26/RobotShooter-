@@ -1,4 +1,4 @@
-### First-Person Shooting Game
+# First-Person Shooting Game
 ## Overview
 This project is a first-person shooting game deveoped in Unity using C#. It focuses on core game play mechanics such as shooting, enemy AI, player interaction.
 The game can be accessed and played following the link: https://play.unity.com/en/games/d77ff91f-9969-4069-be16-183701cf800e/deadsight
